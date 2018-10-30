@@ -1,0 +1,179 @@
+﻿<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Contact me</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+</head>
+<style>
+
+    .row.content {
+        height: 100%;
+    }
+
+    
+    .sidenav {
+        background-color: sandybrown;
+        height: 100%;
+        position: absolute;
+        right: 0px;
+    }
+
+   
+    footer {
+        background-color: black;
+        color: white;
+        padding: 10px;
+    }
+
+
+ 
+
+</style>
+
+<script>
+
+    function validateEmail(sEmail) {
+        var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        if (filter.test(sEmail)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+    $(document).ready(function () {
+        var comment = new Quill('#comment', {
+            theme: 'snow'
+        });
+
+        $("#submit").click(function () {
+            $("#firstname").css('background-color', 'white');
+            $("#lastname").css('background-color', 'white');
+            $("#email").css('background-color', 'white');
+            $("#comment").css('background-color', 'white');
+            var txt = comment.getText();
+
+            if ($("#firstname").val() == "") {
+                $("#firstname").css("background-color", "red");
+            }
+            else if ($("#lastname").val() == "") {
+                $("#lastname").css("background-color", "red");
+            }
+            else if ($("#email").val() == "" || !validateEmail($("#email").val())) {
+                alert("Email address is not valid");
+                $("#email").css("background-color", "red");
+            }
+            else if (txt == "\n") {
+                $("#comment").css('background-color', 'red');
+            }
+            else {
+                alert("Thanks for the comment!");
+                $("#firstname").css('background-color', 'white')
+                    .val("");
+                $("#lastname").css('background-color', 'white')
+                    .val("");
+                $("#email").css('background-color', 'white')
+                    .val("");
+                $("#comment").css('background-color', 'white')
+                comment.setText("");
+
+            }
+        });
+
+        $("#firstname").click(function () {
+            $("#firstname").css('background-color', 'yellow');
+            $("#lastname").css('background-color', 'white');
+            $("#email").css('background-color', 'white');
+            $("#comment").css('background-color', 'white');
+        });
+
+        $("#lastname").click(function () {
+            $("#lastname").css('background-color', 'yellow');
+            $("#firstname").css('background-color', 'white');
+            $("#email").css('background-color', 'white');
+            $("#comment").css('background-color', 'white');
+        });
+
+        $("#email").click(function () {
+            $("#email").css('background-color', 'yellow');
+            $("#lastname").css('background-color', 'white');
+            $("#firstname").css('background-color', 'white');
+            $("#comment").css('background-color', 'white');
+        });
+
+        $("#comment").click(function () {
+            $("#email").css('background-color', 'white');
+            $("#lastname").css('background-color', 'white');
+            $("#firstname").css('background-color', 'white');
+            $("#comment").css('background-color', 'yellow');
+        });
+    });
+
+</script>
+
+<body>
+
+    <div class="container-fluid" style="background-color:gray">
+        <div class="row content">
+            <div class="col-sm-2 sidenav" style="width:20%">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="Home.html">Home</a></li>
+                    <li class="nav-item"><a href="Experience.html" class="resourcelink">Experience</a></li>
+                    <li class="nav-item"><a href="ContactUs.html" class="resourcelink">Contact Me</a></li>
+                    <li class="nav-item"><a href="Registration.html" class="resourcelink">Employer Registration</a></li>
+                    <li class="nav-item"><a href="Canvas.html" class="resourcelink">My Work</a></li>
+                </ul><br>
+
+            </div>
+
+            <div class="col-sm-9 text-center" style="width:80%">
+                <h1 class="text-xl-center">Contact me</h1>
+                <hr />
+                <br />
+                <div class="form-group">
+                    <label for="firstname">First Name:</label>
+                    <input type="firstname" class="form-control" id="firstname" />
+                </div>
+
+                <div class="form-group">
+                    <label for="lastname">Last Name:</label>
+                    <input type="lastname" class="form-control" id="lastname" />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" id="email" />
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">Comment:</label>
+                    <div class="form-control" style="height: 25%"  id="comment"></div>
+                </div>
+
+                <button type="submit" id="submit" class="btn btn-dark">Submit</button>
+
+            </div>
+        </div>
+    </div>
+
+    <footer id="contact" class="container-fluid text-center">
+        <p>
+            Phone: (509)-999-9013<br />
+            Email: Lukehilmes2@gmail.com<br />
+            Address: 540 North Avenue East<br /> Missoula, Montana 59801
+        </p>
+    </footer>
+
+</body>
+
+
+</html>

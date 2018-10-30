@@ -1,0 +1,16 @@
+[
+    {
+        "Company": "Lyle Prairie Farms",
+        "TimeWorked": "3 Years",
+        "JobTitle": "Combine Operator",
+        "imgPath": "combine.jpg",
+        "Employer": "Manual Labor"
+    },
+    {
+        "Company": "Hilmes Construction",
+        "TimeWorked": "1 Summer",
+        "JobTitle": "Construction Worker",
+        "imgPath": "scraper.jpg",
+        "Employer": "Manual Labor"
+    }
+]

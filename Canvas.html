@@ -1,0 +1,95 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>My work</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css" rel="stylesheet"
+        type="text/css" />
+
+</head>
+<style>
+    .row.content {
+        height: 100%;
+    }
+
+
+    .sidenav {
+        background-color: sandybrown;
+        height: 100%;
+        position: absolute;
+        right: 0px;
+    }
+
+
+    footer {
+        background-color: black;
+        color: white;
+        padding: 10px;
+    }
+</style>
+
+<script src="Javascripts/interactive.js"></script>
+<script src="Javascripts/still.js"></script>
+<script src="Javascripts/ww.js"></script>
+<script src="Data/highscores.json"></script>
+
+<body>
+
+    <div class="container-fluid" style="background-color:gray">
+        <div class="row content">
+            <div class="col-sm-2 sidenav" style="width:20%">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="Home.html">Home</a></li>
+                    <li class="nav-item"><a href="Experience.html" class="resourcelink">Experience</a></li>
+                    <li class="nav-item"><a href="ContactUs.html" class="resourcelink">Contact Me</a></li>
+                    <li class="nav-item"><a href="Registration.html" class="resourcelink">Employer Registration</a></li>
+                    <li class="nav-item"><a href="Canvas.html" class="resourcelink">My Work</a></li>
+                </ul><br>
+
+            </div>
+            <div>
+                <canvas id="still" width="400" height="400" style="border:1px solid #000000; background-color:white; padding: 20px;">
+                </canvas>
+                <canvas id="interactive" width="400" height="400" style="border:1px solid #000000; background-color:white; padding: 20px;">
+                </canvas>
+                <button id="btnCheck">Start Game</button>
+
+                <div>
+                    <h1>Rick and Morty Characters</h1>
+                    <table id="table" class="table-condensed table-hover">
+                        <thead class="thead-light">
+
+                            <tr>
+                                <th>Name</th>
+                                <th>Status</th>
+                                <th>Species</th>
+                            </tr>
+
+                        </thead>
+                    </table>
+                    <button onclick="startWorker();">Get Data</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer id="contact" class="container-fluid text-center">
+        <p>
+            Phone: (509)-999-9013<br />
+            Email: Lukehilmes2@gmail.com<br />
+            Address: 540 North Avenue East<br /> Missoula, Montana 59801
+        </p>
+    </footer>
+
+</body>
+
+
+</html>
