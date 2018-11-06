@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Animation</title>
+
+
+	<script src="https://cdn.babylonjs.com/babylon.js"></script>
+	<script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+	<script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css" rel="stylesheet"
+	 type="text/css" />
+
+</head>
+<style>
+	.row.content {
+		height: 100%;
+	}
+
+
+	.sidenav {
+		background-color: sandybrown;
+		height: 100%;
+		position: absolute;
+		right: 0px;
+	}
+
+
+	footer {
+		background-color: black;
+		color: white;
+		padding: 10px;
+	}
+
+	html,
+	body {
+		overflow: hidden;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	#renderCanvas {
+		width: 100%;
+		height: 100%;
+		touch-action: none;
+	}
+</style>
+<body>
+
+
+
+	<div class="container-fluid" style="background-color:gray">
+		<div class="row content">
+			<div class="col-sm-2 sidenav" style="width:20%">
+				<ul class="nav nav-pills nav-stacked">
+					<li><a href="Home.html">Home</a></li>
+					<li class="nav-item"><a href="Experience.html" class="resourcelink">Experience</a></li>
+					<li class="nav-item"><a href="ContactUs.html" class="resourcelink">Contact Me</a></li>
+					<li class="nav-item"><a href="Registration.html" class="resourcelink">Employer Registration</a></li>
+					<li class="nav-item"><a href="Canvas.html" class="resourcelink">My Work</a></li>
+                    <li class="nav-item"><a href="Animation.html" class="resourcelink">Animation</a></li>
+                    <li class="nav-item"><a href="Game.html" class="resourcelink">Invaders</a></li>
+				</ul><br>
+
+			</div>
+			<div>
+				<canvas id="renderCanvas" touch-action="none"></canvas>
+			</div>
+		</div>
+
+	</div>
+
+	<footer id="contact" class="container-fluid text-center">
+		<p>
+			Phone: (509)-999-9013<br />
+			Email: Lukehilmes2@gmail.com<br />
+			Address: 540 North Avenue East<br /> Missoula, Montana 59801
+		</p>
+	</footer>
+	<script>
+		var canvas = document.getElementById("renderCanvas"); // Get the canvas element 
+		var engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
+
+		var createScene = function () {
+
+			// Create the scene space
+			var scene = new BABYLON.Scene(engine);
+
+			// Add a camera to the scene and attach it to the canvas
+			var camera = new BABYLON.ArcRotateCamera("Camera", 3 * Math.PI / 4, Math.PI / 4, 4, BABYLON.Vector3.Zero(), scene);
+			camera.attachControl(canvas, true);
+
+			// Add lights to the scene
+			var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
+			var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 1, -1), scene);
+
+			var options = {
+				width: 1,
+				height: 1,
+				depth: 1,
+				
+			};
+			// Add and manipulate meshes in the scene
+			var box = BABYLON.MeshBuilder.CreateBox("box", options, scene);
+			box.position.x = 1.5;
+			
+
+
+			var options3 = {
+				diameter:1,
+				color: BABYLON.Color4(0, 1, 1, 1)
+			}
+			var sphere = BABYLON.MeshBuilder.CreateSphere("sphere",options3,scene);
+
+			// add music to the scene
+			
+
+			//Create a rotation animation at 15 FPS
+			var frameRate = 1;
+			// animation in y-axis
+			var animationBox = new BABYLON.Animation("yAnimation", "rotation.y", frameRate, BABYLON.Animation.ANIMATIONTYPE_FLOAT,
+				BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+			//Here we have chosen a loop mode, but you can change to :
+			//  Use previous values and increment it (BABYLON.Animation.ANIMATIONLOOPMODE_RELATIVE)
+			//  Restart from initial value (BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE)
+			//  Keep the final value (BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT)
+
+			// Animation keys
+			var keyFramesR = [];
+
+			keyFramesR.push({
+				frame: frameRate,
+				value: Math.PI
+			});
+
+			keyFramesR.push({
+				frame: 2 * frameRate,
+				value: 2 * Math.PI
+			});
+
+			keyFramesR.push({
+				frame: 3 * frameRate,
+				value: 3 * Math.PI
+			});
+
+
+			//Adding keys to the animation object
+			animationBox.setKeys(keyFramesR);
+
+			//Then add the animation object to box1
+			box.animations.push(animationBox);
+
+			// animation in the x-axis
+			var animationBox2 = new BABYLON.Animation("xAnimation", "rotation.x", frameRate, BABYLON.Animation.ANIMATIONTYPE_FLOAT,
+				BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+
+			// Animation keys
+			var keyFramesR2 = [];
+
+			keyFramesR2.push({
+				frame: 0,
+				value: 0
+			});
+
+			keyFramesR2.push({
+				frame: 2 * frameRate,
+				value: 2 * Math.PI
+			});
+
+			keyFramesR2.push({
+				frame: 3 * frameRate,
+				value: 3 * Math.PI
+			});
+
+
+			//Adding keys to the animation object
+			animationBox2.setKeys(keyFramesR2);
+
+			//Then add the animation object to box1
+			box.animations.push(animationBox2);
+			//scene.beginAnimation(box, 0, 100, true);
+
+			var nextAnimation = function () {
+				scene.beginDirectAnimation(box, [animationBox, animationBox2], 0, 2 * frameRate, true);
+			}
+
+			scene.beginDirectAnimation(box, [animationBox], 0, 2 * frameRate, false, 1, nextAnimation);
+
+			// add the image to the sides of the cube - you can use different images
+			// if you use a sprite sheet
+			var mat = new BABYLON.StandardMaterial("mat", scene);
+			var texture = new BABYLON.Texture("Photos/dog.jpg", scene);
+			mat.diffuseTexture = texture;
+			box.material = mat;
+
+			var mat1 = new BABYLON.StandardMaterial("mat", scene);
+			var texture1 = new BABYLON.Texture("Photos/earth.jpg", scene);
+			mat1.diffuseTexture = texture1;
+			sphere.material = mat1;
+
+
+			return scene;
+
+		};
+
+		var scene = createScene(); //Call the createScene function
+
+		// Register a render loop to repeatedly render the scene
+		engine.runRenderLoop(function () {
+			scene.render();
+		});
+
+		// Watch for browser/canvas resize events
+		window.addEventListener("resize", function () {
+			engine.resize();
+		});
+	</script>
+
+</body>
+
+</html>

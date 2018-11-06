@@ -2,7 +2,7 @@
 
 $(document).ready(function ($) {
     var canvas = document.getElementById("interactive");
-    ctx = canvas.getContext("2d");
+    var ctx = canvas.getContext("2d");
     var startGame = false;
     var isFiring = false;
     var fired = false;
